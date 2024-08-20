@@ -41,7 +41,7 @@ form.addEventListener('submit', handleForm);
   </head>
   <body>
     <h1 class="text-center">Contact us</h1>
-    <form id="contactform" class="container form">
+    <form method="post" id="contactform" class="container form">
       <label for="name">Name:</label>
       <br>
       <input type="text" id="name" name="name" placeholder="Enter your name here">
@@ -51,12 +51,14 @@ form.addEventListener('submit', handleForm);
       <input type="email" id="email" name="email" placeholder="Enter your email here">
       <br><br>
       <label for="subject">Subject:</label>
+      <br>
       <select name="subject">
         <option value="">None</option>
         <option value="Video Idea">Video Idea</option>
       </select>
       <br><br>
       <label for="message">Message:</label>
+      <br>
       <textarea name="message"></textarea>
       <br><br>
       <button type="submit" class="btn btn-outline-success">Submit form</button>
