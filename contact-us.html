@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webforms Testing</title>
+    <link rel="stylesheet" href="//cdn.samahodges.com/webfiles/css/bootstrap.min.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+      const { createClient } = supabase = createClient('https://uflmhzgtrkhwjmkfxwcl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVmbG1oemd0cmtod2pta2Z4d2NsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTQxNDMsImV4cCI6MjAzOTczMDE0M30.JpUDFsVhJu8-0-05l-AQzvwi9AjddyBI1SKxlS9CMpQ')
+
+      const form = document.querySelector('#contactform')
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault()
+
+        const formInputs = form.querySelectorAll('input, select, textarea')
+        
+        let submision = {}
+          
+        formInputs.forEach(element => {
+          const {value, name} = element
+          if (value) {
+            submision[name] = value
+          }
+        })
+        const {error, data} = await supabase.form('entries').insert([submision], {returning: 'minimal'})
+
+        console.log({error, data})
+
+        if(error) {
+          alert('There was an error whilst submiting the form')
+        } else{
+          alert('Thanks for contacting us')
+        }
+
+        formInputs.forEach(element => element.value = '')
+      })
+    </script>
+  </head>
+  <body>
+    <h1 class="text-center">Contact us</h1>
+    <form id="contactform">
+      <label for="name">Name:</label>
+      <br>
+      <input type="text" id="name" name="name" placeholder="Enter your first name here">
+      <br><br>
+      <label for="email">Email:</label>
+      <br>
+      <input type="email" id="email" name="email" placeholder="Enter your first name here">
+      <br><br>
+      <label for="subject">Subject:</label>#
+      <select name="subject">
+        <option value="">None</option>
+        <option value="Video Idea">Video Idea</option>
+      </select>
+      <br><br>
+      <label for="message">Message:</label>
+      <textarea name="message"></textarea>
+      <br><br>
+      <button type="submit" class="btn btn-outline-success">Submit form</button>
+    </form>
+  </body>
+</html>
