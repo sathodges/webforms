@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="//cdn.samahodges.com/webfiles/css/bootstrap.min.css">
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script>
+      var form = document.getElementById("contactform");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+      
       const { createClient } = supabase = createClient('https://uflmhzgtrkhwjmkfxwcl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVmbG1oemd0cmtod2pta2Z4d2NsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTQxNDMsImV4cCI6MjAzOTczMDE0M30.JpUDFsVhJu8-0-05l-AQzvwi9AjddyBI1SKxlS9CMpQ')
 
       const form = document.querySelector('#contactform')
